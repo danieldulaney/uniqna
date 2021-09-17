@@ -101,10 +101,10 @@ fn process(conf: &Config) -> Result<(), Box<dyn Error>> {
         if let Some(vi) = conf.verbose_interval {
             if line_count % vi == 0 {
                 eprintln!(
-                    "lines: {}, uniques: {}, ratio: {}",
+                    "lines: {}, uniques: {}, {:.5}% unique",
                     line_count,
                     seen_lines.len(),
-                    seen_lines.len() as f32 / line_count as f32
+                    seen_lines.len() as f32 / line_count as f32 * 100.
                 )
             }
         }
