@@ -47,7 +47,7 @@ fn main_err() -> Result<(), Box<dyn Error>> {
                 .default_value("-")
                 .help("File to read from, or - for stdin"),
         )
-        .get_matches_safe()?;
+        .get_matches();
 
     let verbose_interval: Option<usize> = if matches.occurrences_of("verbose") > 0 {
         let verbose_val = matches
