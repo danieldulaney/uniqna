@@ -13,6 +13,15 @@ jobs:
               with:
                   toolchain: stable
 
+            - name: Cache Build
+              with:
+                path: |
+                  ~/.cargo/registry/index
+                  ~/.cargo/registry/cache
+                  ~/.cargo/git/db
+                  target/
+                key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+
             - name: Build
               uses: actions-rs/cargo@v1
               with:
@@ -26,7 +35,7 @@ jobs:
               id: cache-cargo-rpm
               uses: actions/cache@v2
               with:
-                  path: .cargo/bin/cargo-rpm
+                  path: ~/.cargo/bin/cargo-rpm
                   key: {{ runner.os }}-cargo-rpm
 
             - name: Install cargo-rpm
