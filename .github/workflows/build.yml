@@ -1,0 +1,20 @@
+name: Build and Package
+on: push
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2
+
+            - name: Get Toolchain
+              uses: actions-rs/toolchain@v1
+              with:
+                  toolchain: stable
+
+            - name: Build
+              uses: actions-rs/cargo@v1
+                command: build
+                args: --release
+
