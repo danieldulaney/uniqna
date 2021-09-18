@@ -44,7 +44,7 @@ jobs:
               if: steps.cache-cargo-rpm.outputs.cache-hit != 'true'
               with:
                   command: install
-                  args: cargo-rpm --version 0.8
+                  args: cargo-rpm --version 0.8.0
 
             - name: Cargo RPM Init
               run: cargo rpm init
