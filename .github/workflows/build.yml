@@ -66,5 +66,5 @@ jobs:
               with:
                   files: |
                       target/release/uniqna
-                      target/release/rpmbuild/RPMs/*/*.rpm
+                      target/release/rpmbuild/RPMs/*
 
