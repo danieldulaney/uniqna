@@ -19,24 +19,42 @@ jobs:
                 command: build
                 args: --release
 
-            - name: Upload
-              uses: actions/upload-artifact@v2
-              with:
-                  name: release-executable
-                  path: target/release/uniqna
-
             - name: Install rpmbuild
               run: sudo apt-get install rpm
 
+            - name: Cache cargo-rpm
+              id: cache-cargo-rpm
+              uses: actions/cache@v2
+              with:
+                  path: .cargo/bin/cargo-rpm
+                  key: {{ runner.os }}-cargo-rpm
+
             - name: Install cargo-rpm
+              if: steps.cache-cargo-rpm.outputs.cache-hit != 'true'
               uses: actions-rs/cargo@v1
               with:
                   command: install
-                  args: cargo-rpm --version ^0.8
+                  args: cargo-rpm --version 0.8
 
             - name: Cargo RPM Init
               run: cargo rpm init
 
-            - name: Cargo RPM Bulid
+            - name: Cargo RPM Build
               run: cargo rpm build
+
+            - name: Upload Artifact
+              uses: actions/upload-artifact@v2
+              with:
+                  name: assets
+                  path: |
+                      target/release/uniqna
+                      target/release/rpmbuild/RPMs/*/*.rpm
+
+            - name: Release
+              uses: softprops/action-gh-release@v1
+              if: startsWith(github.ref, 'refs/tags')
+              with:
+                  files: |
+                      target/release/uniqna
+                      target/release/rpmbuild/RPMs/*/*.rpm
 
