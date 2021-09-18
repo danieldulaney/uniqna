@@ -35,3 +35,8 @@ tags
 # Persistent undo
 [._]*.un~
 
+
+
+# For building RPMs
+.rpm
+

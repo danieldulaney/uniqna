@@ -25,3 +25,18 @@ jobs:
                   name: release-executable
                   path: target/release/uniqna
 
+            - name: Install rpmbuild
+              run: sudo apt-get install rpm
+
+            - name: Install Cargo-RPM
+              uses: actions-rs/install@v0.1
+              with:
+                  crate: cargo-rpm
+                  version: "0.8"
+
+            - name: Cargo RPM Init
+              run: cargo rpm init
+
+            - name: Cargo RPM Bulid
+              run: cargo rpm build
+
