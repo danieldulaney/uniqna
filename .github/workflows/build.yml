@@ -19,3 +19,9 @@ jobs:
                 command: build
                 args: --release
 
+            - name: Upload
+              uses: actions/upload-artifact@v2
+              with:
+                  name: release-executable
+                  path: target/release/uniqna
+
