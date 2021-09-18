@@ -28,8 +28,8 @@ jobs:
             - name: Install rpmbuild
               run: sudo apt-get install rpm
 
-            - name: Install Cargo-RPM
-              uses: actions-rs/cargo@v0.1
+            - name: Install cargo-rpm
+              uses: actions-rs/cargo@v1
               with:
                   command: install
                   args: cargo-rpm --version 0.8
