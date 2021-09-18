@@ -29,10 +29,10 @@ jobs:
               run: sudo apt-get install rpm
 
             - name: Install Cargo-RPM
-              uses: actions-rs/install@v0.1
+              uses: actions-rs/cargo@v0.1
               with:
-                  crate: cargo-rpm
-                  version: "0.8"
+                  command: install
+                  args: cargo-rpm --version 0.8
 
             - name: Cargo RPM Init
               run: cargo rpm init
