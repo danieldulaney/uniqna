@@ -32,15 +32,15 @@ jobs:
               run: sudo apt-get install rpm
 
             - name: Cache cargo-rpm
-              id: cache-cargo-rpm
               uses: actions/cache@v2
+              id: cache-cargo-rpm
               with:
                 path: ~/.cargo/bin/cargo-rpm
                 key: ${{ runner.os }}-cargo-rpm
 
             - name: Install cargo-rpm
-              if: steps.cache-cargo-rpm.outputs.cache-hit != 'true'
               uses: actions-rs/cargo@v1
+              if: steps.cache-cargo-rpm.outputs.cache-hit != 'true'
               with:
                   command: install
                   args: cargo-rpm --version 0.8
