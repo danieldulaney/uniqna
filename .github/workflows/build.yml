@@ -58,7 +58,7 @@ jobs:
                   name: assets
                   path: |
                       target/release/uniqna
-                      target/release/rpmbuild/RPMs/*/*.rpm
+                      target/release/rpmbuild/RPMS/*/*.rpm
 
             - name: Release
               uses: softprops/action-gh-release@v1
