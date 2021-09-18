@@ -35,8 +35,8 @@ jobs:
               id: cache-cargo-rpm
               uses: actions/cache@v2
               with:
-                  path: ~/.cargo/bin/cargo-rpm
-                  key: {{ runner.os }}-cargo-rpm
+                path: ~/.cargo/bin/cargo-rpm
+                key: {{ runner.os }}-cargo-rpm
 
             - name: Install cargo-rpm
               if: steps.cache-cargo-rpm.outputs.cache-hit != 'true'
